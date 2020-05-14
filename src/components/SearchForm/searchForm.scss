@@ -1,0 +1,11 @@
+.searchContainer {
+    background-color: blanchedalmond;
+    height: 100%;
+
+    .resultsContainer {
+        margin-top: 60px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
