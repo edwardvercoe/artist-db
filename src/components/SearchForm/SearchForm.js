@@ -6,24 +6,50 @@ import ArtistCard from "./ArtistCard/ArtistCard";
 import Button from "@material-ui/core/Button";
 import StarIcon from "@material-ui/icons/Star";
 import Typography from "@material-ui/core/Typography";
+import Pagination from './Pagination/Pagination'
 
-export default function SearchForm({ apiData }) {
+export default function SearchForm({ apiData, loading }) {
   const [city, setCity] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [displayPagination, setDisplayPagination] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
+    // Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = searchResults.slice(indexOfFirstPost, indexOfLastPost)
+
+    // Submit search form query
 
   const handleSubmit = () => {
     console.log("submitting");
     // CITY SEARCH
-    const results = apiData.filter((data) => {
-      if (city.some((x) => x === data.city)) return data;
-    });
-    console.log(results);
-    return setSearchResults(
-      results.map((artist) => <ArtistCard key={artist._id} data={artist} />)
-    );
+    setSearchResults(apiData.filter((data) => {
+      return city.some((x) => x === data.city)
+    }))
+    // const currentArtists = results.slice(indexOfFirstPost, indexOfLastPost);
+
+    // setSearchResults(
+    //   currentArtists.map((artist) => <ArtistCard key={artist._id} data={artist} />)
+    // );
+    // setDisplayPagination(<Pagination postsPerPage={postsPerPage} totalPosts={results.length} paginate={paginate} />)
+    console.log(searchResults);
+
   };
 
+  // change page
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber)
+  }
+
+  // loading API data
+  if (loading) {
+    return <h2>Loading...</h2>
+  }
+
   return (
+    
     <div className="searchContainer">
       <Typography variant="h2" component="h2">Search form</Typography>
       <Container className="">
@@ -40,7 +66,11 @@ export default function SearchForm({ apiData }) {
           </Button>
         </form>
       </Container>
-      <Container className="resultsContainer">{searchResults}</Container>
+      <Container className="resultsContainer">
+      {currentPosts.map((artist) => <ArtistCard key={artist._id} data={artist} />)}
+      </Container>
+      <Pagination postsPerPage={postsPerPage} totalPosts={searchResults.length} paginate={paginate} />
     </div>
   );
+
 }
