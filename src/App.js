@@ -13,6 +13,13 @@ import "./app.scss";
 function App() {
   const [apiData, setApiData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+
+  const clearSearch = () => {
+    setSearchResults([]);
+    console.log(searchResults);
+    console.log("success");
+  };
 
   useEffect(() => {
     if (apiData.length < 1) {
@@ -34,13 +41,41 @@ function App() {
     }
   }, [apiData]);
 
-  console.log(apiData);
-
   return (
     <Router>
       <ParallaxProvider>
         <div className="appWrapper">
           <header className="header">
+            <div className="assets-container">
+              <img
+                className="asset-cloudSmall1 anim-cloudHover2"
+                src="static/assets/cloudSmall.png"
+                alt=""
+              />
+              <img
+                className="asset-cloudSmall2 anim-cloudHover"
+                src="static/assets/cloudSmall.png"
+                alt=""
+              />
+
+              <img
+                className="asset-cloudSmall3 anim-cloudHover2"
+                src="static/assets/cloudSmall.png"
+                alt=""
+              />
+
+              <img
+                className="asset-cloudShine"
+                src="static/assets/cloudBig.png"
+                alt=""
+              />
+              <img
+                className="asset-rainbowBig"
+                src="static/assets/rainbowBig.png"
+                alt=""
+              />
+            </div>
+
             <div className="titleContainer">
               <img
                 className="asset-rainbowSmall"
@@ -57,7 +92,8 @@ function App() {
                 src="static/assets/cloudSmall.png"
                 alt=""
               />
-              <Link to="/">
+
+              <Link to="/" onClick={() => clearSearch()}>
                 <h1>SITE TITLE</h1>
               </Link>
             </div>
@@ -82,21 +118,54 @@ function App() {
               y={[100, -100]}
               tagOuter="figure"
             >
-              <img className="anim-cloudHover" src="static/assets/clouds.png" alt="" />
+              <img
+                className="anim-cloudHover"
+                src="static/assets/clouds.png"
+                alt=""
+              />
             </Parallax>
             <Parallax
               className="asset-cloudShine asset"
               y={[-100, 100]}
               tagOuter="figure"
             >
-              <img className="anim-cloudHover" src="static/assets/cloudShine.png" alt="" />
+              <img
+                className="anim-cloudHover"
+                src="static/assets/cloudShine.png"
+                alt=""
+              />
+            </Parallax>
+
+            <Parallax
+              className="asset-cloudBig asset"
+              y={[-100, 100]}
+              tagOuter="figure"
+            >
+              <img
+                className="anim-cloudHover2"
+                src="static/assets/cloudBig.png"
+                alt=""
+              />
             </Parallax>
 
             <Switch>
               <Route path="/search">
-                <SearchForm apiData={apiData} loading={loading} />
+                <SearchForm
+                  apiData={apiData}
+                  loading={loading}
+                  searchResults={searchResults}
+                  setSearchResults={setSearchResults}
+                />
               </Route>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/">
+                <SearchForm
+                  apiData={apiData}
+                  loading={loading}
+                  searchResults={searchResults}
+                  setSearchResults={setSearchResults}
+                />
+                <Home />
+              </Route>
             </Switch>
           </div>
 

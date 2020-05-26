@@ -17,6 +17,10 @@ body {
 }
 
 body {
+    background-image: url("./particles-bg.svg");
+    // background-attachment: fixed;
+    background-repeat: repeat;
+    background-size: contain;
     background-color: $pink;
     font-family: "Brandon", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -41,6 +45,42 @@ html {
 .header {
     width: 100%;
     min-height: 250px;
+    position: relative;
+    .assets-container {
+        width: 100%;
+        min-height: 250px;
+        position: absolute;
+
+        img {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .asset-cloudSmall1 {
+            left: 50%;
+            top: 30px;
+        }
+
+        .asset-cloudSmall2 {
+            top: 70%;
+            left: calc(100% + 20px);
+        }
+        .asset-cloudSmall3 {
+            top: 18%;
+            right: 70px;
+        }
+
+        .asset-rainbowBig {
+            right: 0;
+            top: 30%;
+            z-index: -3;
+        }
+
+        .asset-cloudShine {
+            top: 40%;
+            right: 160px;
+        }
+    }
 
     .titleContainer {
         margin: 40px 0;
@@ -134,9 +174,7 @@ footer {
             z-index: -4;
         }
     }
-    .asset {
-        position: absolute;
-    }
+
     .asset-clouds {
         left: (calc(100% - 20px));
         top: 40%;
@@ -147,4 +185,13 @@ footer {
         top: 60%;
         z-index: -4;
     }
+    .asset-cloudBig {
+        left: (calc(100% - 30px));
+        top: 95%;
+        z-index: -3;
+    }
+}
+
+.asset {
+    position: absolute;
 }

@@ -1,10 +1,50 @@
+@import "../../variables.scss";
+
 .searchContainer {
-    height: 100%;
+    margin: 40px 60px;
+
+    form.searchForm {
+        position: relative;
+        // background: rgba(255, 0, 255, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img.loadingSpinner {
+            width: 50px;
+            height: auto;
+        }
+
+        img.asset-arrowR {
+            position: absolute;
+            top: -48px;
+            right: 100%;
+        }
+
+        span.searchPhrase {
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 14px;
+            margin: 0 10px;
+        }
+
+        .btn-search {
+            background-color: $red;
+            img.asset-shine {
+                position: absolute;
+                top: -20px;
+                left: 0;
+                user-select: none;
+            }
+        }
+    }
 
     .resultsContainer {
         margin-top: 60px;
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
     }
 }
-

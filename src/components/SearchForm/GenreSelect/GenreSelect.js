@@ -38,22 +38,21 @@ const MenuProps = {
   },
 };
 
-const cities = [
-  'Melbourne',
-  'Sydney',
-  'Canberra',
-  'Brisbane',
-  'Perth'
+const genres = [
+  'House',
+  'Techno',
+  'Disco',
+  'Hip Hop',
+  'Trap'
 ];
 
 
 
-export default function CitySelect({city, setCity}) {
+export default function GenreSelect({genre, setGenre}) {
   const classes = useStyles();
-  // const [cityName, setCityName] = React.useState([]);
 
   const handleChange = (event) => {
-    setCity(event.target.value);
+    setGenre(event.target.value);
   };
 
 
@@ -61,12 +60,12 @@ export default function CitySelect({city, setCity}) {
     <div>
 
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-checkbox-label">City</InputLabel>
+        <InputLabel id="demo-mutiple-checkbox-label">Genre</InputLabel>
         <Select
           labelId="demo-mutiple-checkbox-label"
           id="demo-mutiple-checkbox"
           multiple
-          value={city}
+          value={genre}
           onChange={handleChange}
           input={<Input />}
           renderValue={(selected) => (
@@ -78,9 +77,9 @@ export default function CitySelect({city, setCity}) {
           )}
           MenuProps={MenuProps}
         >
-          {cities.map((name) => (
+          {genres.map((name) => (
             <MenuItem key={name} value={name}>
-              <Checkbox checked={city.indexOf(name) > -1} />
+              <Checkbox checked={genre.indexOf(name) > -1} />
               <ListItemText primary={name} />
               
             </MenuItem>
