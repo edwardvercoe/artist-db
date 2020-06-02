@@ -4,7 +4,9 @@ import CitySelect from "./CitySelect/CitySelect";
 import GenreSelect from "./GenreSelect/GenreSelect";
 import ArtistCard from "./ArtistCard/ArtistCard";
 import Button from "@material-ui/core/Button";
-import Pagination from "./Pagination/Pagination";
+import Pagination from "@material-ui/lab/Pagination";
+
+// import PaginationModel from "./Pagination/PaginationModel";
 
 import "./searchForm.scss";
 
@@ -19,6 +21,7 @@ export default function SearchForm({
   const [resultsFound, setResultsFound] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
+  const [showPagination, setShowPagination] = useState(false);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -38,6 +41,8 @@ export default function SearchForm({
         return city.some((x) => x === data.city);
       });
     }
+
+    // GENRE SEARCH
     if (genre.length > 0) {
       results = results.filter((data) => {
         return genre.some((x) => data.genre.includes(x.toLowerCase()));
@@ -47,11 +52,12 @@ export default function SearchForm({
     results.length < 1 ? setResultsFound(false) : setResultsFound(true);
 
     setSearchResults(results);
+    results.length > postsPerPage ? setShowPagination(true): setShowPagination(false)
   };
 
   // change page
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const paginate = (event, value) => {
+    setCurrentPage(value);
   };
 
   return (
@@ -94,17 +100,29 @@ export default function SearchForm({
         </Link>
       </form>
       <div className="resultsContainer">
-        {resultsFound
-          ? currentPosts.map((artist) => (
-              <ArtistCard key={artist._id} data={artist} />
-            ))
-          : <h3>No results found :(</h3>}
+        {resultsFound ? (
+          currentPosts.map((artist) => (
+            <ArtistCard key={artist._id} data={artist} />
+          ))
+        ) : (
+          <h3>No results found :(</h3>
+        )}
+
+
       </div>
-      <Pagination
-        postsPerPage={postsPerPage}
-        totalPosts={searchResults.length}
-        paginate={paginate}
-      />
+      {showPagination ? (
+        <Pagination
+          count={Math.ceil(searchResults.length / postsPerPage)}
+          onChange={paginate}
+          className="pagination"
+        />
+      ) : null}
     </div>
   );
 }
+
+// <PaginationModel
+// postsPerPage={postsPerPage}
+// totalPosts={searchResults.length}
+// paginate={paginate}
+// />
