@@ -21,7 +21,27 @@
         line-height: 1.3;
         width: calc(100% - 40px);
         max-width: 700px;
-        margin: 80px 0;
+        margin-bottom: 40px;
+
+        .btn-search {
+            margin-top: 40px;
+            background-color: $red;
+            img.asset-shine {
+                position: absolute;
+                top: -25px;
+                left: 30px;
+                user-select: none;
+            }
+        }
+
+        p {
+            color: $grey;
+        }
+
+        h3 {
+            margin-top: 40px;
+            font-weight: 700;
+        }
     }
 
     .asset-smiley {

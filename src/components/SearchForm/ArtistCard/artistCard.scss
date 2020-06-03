@@ -6,6 +6,8 @@
 
 .cardContainer {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 240px;
     margin: 20px;
     border: 2px solid $black;
@@ -58,6 +60,53 @@
             color: $red;
             font-size: 32px;
         }
+
+        .genre-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+
+            .genre-chip {
+                margin: 2px 2px;
+                padding: 2px 10px;
+                border-radius: 10px;
+                letter-spacing: 0.2px;
+                font-weight: 700;
+                opacity: 0.8;
+                color: $white;
+                transition: all 0.3s ease;
+                box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+                    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+                text-transform: capitalize;    
+
+                &:hover {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+            }
+            .genre-chip:nth-of-type(odd) {
+                background-color: $red;
+            }
+            .genre-chip:nth-of-type(even) {
+                background-color: $blue;
+            }
+
+            .genre-chip:nth-of-type(4n + 3) {
+                background-color: $green;
+            }
+            .genre-chip:nth-of-type(4n + 4) {
+                background-color: $yellow;
+            }
+        }
+    }
+
+    .MuiCardActions-root {
+        margin-top: auto;
+        img {
+            width: 40px;
+            height: auto;
+        }
     }
 }
 
@@ -68,9 +117,9 @@
     background-color: $blue;
 }
 
-.cardContainer:nth-of-type(4n+ 3) div.outerCard {
+.cardContainer:nth-of-type(4n + 3) div.outerCard {
     background-color: $green;
 }
-.cardContainer:nth-of-type(4n+ 4) div.outerCard {
+.cardContainer:nth-of-type(4n + 4) div.outerCard {
     background-color: $yellow;
 }

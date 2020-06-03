@@ -1,15 +1,31 @@
 import React from "react";
 import "./home.scss";
 import Carousel from "../Carousel/Carousel";
+import Button from "@material-ui/core/Button";
+
 
 export default function Home() {
   return (
     <div className="homeContainer">
       <div className="hero-copy">
-        SITE TITLE CONNECTS YOU WITH AUSTRALIA’S BEST QUEER ARTISTS. LOREM IPSUM
-        DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. SED SOLLICITUDIN VULPUTATE
-        ENIM IN SCELERISQUE. UT LAOREET GRAVIDA ELIT, UT VOLUTPAT DIAM AUCTOR
-        QUIS.
+        <h1>SITE TITLE CONNECTS YOU WITH AUSTRALIA’S BEST LGBT+ PRO DJ'S.</h1> 
+        
+        <p>ARE YOU A PERFORMER, COMEDIAN, ARTIST, MC OR ANYTHING IN BETWEEN? WE WANT TO HEAR FROM YOU.</p>
+        
+        <h3>APPLICATIONS HAVE NOW OPENED GLOBALLY.</h3>
+        <Button
+        size="large"
+        color="primary"
+        variant="contained"
+        className="btn-search"
+      >
+        <img
+          className="asset-shine"
+          src="static/assets/shine.png"
+          alt="shine"
+        />
+        APPLY NOW!
+      </Button>
       </div>
       <img className="asset-smiley" src="static/assets/smiley.png" alt="smiley icon"></img>
       

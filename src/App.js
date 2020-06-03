@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import SearchForm from "./components/SearchForm/SearchForm";
 import Home from "./components/Home/Home";
-import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from "@material-ui/icons/Search";
 import "./components/NavigationBar/navigationBar.scss";
 import { ParallaxProvider } from "react-scroll-parallax";
 
@@ -97,15 +95,7 @@ function App() {
                 <h1>SITE TITLE</h1>
               </Link>
             </div>
-            <IconButton
-              aria-label="search"
-              className="searchIcon"
-              color="inherit"
-            >
-              <Link to="/search">
-                <SearchIcon />
-              </Link>
-            </IconButton>
+
           </header>
 
           <div className="contentContainer">
